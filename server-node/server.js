@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const app = express();
-
 var cors = require('cors'); //HTTP access control (CORS) for cross origin requests
 
 app.use(cors()); //Setup cors
@@ -11,18 +10,17 @@ app.use(cors()); //Setup cors
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
 
+// Catch all other routes and return the index file
+app.get('/', (req, res) => {
+    res.send('<h1>app works!</h1>');
+    //res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
+
 // Set our api response
 app.get('/api', (req, res) => {
     var jsonData = { "results": ["Important 1 ", "Thing 2",] };
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(jsonData));
-});;
-
-
-// Catch all other routes and return the index file
-app.get('*', (req, res) => {
-    res.send('<h1>app works!</h1>');
-    //res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 /**
