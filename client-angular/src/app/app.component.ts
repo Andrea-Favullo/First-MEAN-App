@@ -14,23 +14,26 @@ export class AppComponent implements OnInit {
   private BASE_URL: string = '/api';
 
   obs: Observable<Data>;
-  url: string='https://3000-ba4f9bba-754f-4996-b5b5-2f81dbb0d058.ws-eu01.gitpod.io/api';
+  url: string = 'https://3000-ba4f9bba-754f-4996-b5b5-2f81dbb0d058.ws-eu01.gitpod.io/api';
   // Inject HttpClient into your component or service.
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    // Make the HTTP request:
-    this.obs = this.http.get<Data>(this.url);
 
-    this.obs.subscribe( data=>{
-      this.results = data['results'];
-      console.log(data)
-    } );
-    /*
+    // NUOVO METODO
+    this.obs = this.http.get<Data>(this.url);
+    this.obs.subscribe(this.prepareData);
+
+    /* VECCHIO METODO
     this.http.get().subscribe(data => {
       // Read the result field from the JSON response.
       this.results = data['results'];
       console.log(data)
     });*/
+  }
+
+  prepareData = (data: Data) => {
+    this.results = data['results'];
+    console.log(data)
   }
 }
