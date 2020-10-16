@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   private BASE_URL: string = '/api';
 
   obs: Observable<Data>;
-  url: string = 'https://3000-ba4f9bba-754f-4996-b5b5-2f81dbb0d058.ws-eu01.gitpod.io/api';
+  url: string = 'https://3000-de6ab8fc-bf82-401d-9b77-d1cf3d343e91.ws-eu01.gitpod.io/api';
   // Inject HttpClient into your component or service.
   constructor(private http: HttpClient) { }
 
