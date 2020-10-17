@@ -11,39 +11,23 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  results: string[];
-  prodotti: Products[];
 
-  obs: Observable<Data>;
-  obsProdotti: Observable<Products[]>;
+  prodotti: JSON;
+  obsProdotti: Observable<JSON>;
 
-  url: string = 'https://3000-de6ab8fc-bf82-401d-9b77-d1cf3d343e91.ws-eu01.gitpod.io/api/products';
+  url: string = 'https://3000-bb4b602a-7699-4c4a-b063-a6f66c1ba49c.ws-eu01.gitpod.io';
 
   // Inject HttpClient into your component or service.
   constructor(private http: HttpClient) { }
 
-  ngOnInit(): void {
-
-    /* VECCHIO METODO
-    this.http.get().subscribe(data => {
-      // Read the result field from the JSON response.
-      this.results = data['results'];
-      console.log(data)
-    });*/
-  }
+  ngOnInit(): void {  }
 
   getProducts(): void{
-    // NUOVO METODO
-    this.obsProdotti = this.http.get<Products[]>(this.url);
+    this.obsProdotti = this.http.get<JSON>(this.url.concat("/api/products"));
     this.obsProdotti.subscribe(this.prepareProdotti);
   }
 
-  prepareData = (data: Data) => {
-    this.results = data['results'];
-    console.log(data)
-  }
-
-  prepareProdotti = (prodotti: Products[]) => {
+  prepareProdotti = (prodotti: JSON) => {
     this.prodotti = prodotti;
     console.log(prodotti)
   }
