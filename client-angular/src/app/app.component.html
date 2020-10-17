@@ -2,13 +2,22 @@
 <html>
 
 <head>
+
 </head>
 
 <body>
-  <h1>NEGOZIO</h1>
-  <button (click)="getProducts()">Mostra prodotti</button>
+	<h1>NEGOZIO</h1>
+	<button (click)="getProducts()">Mostra prodotti</button>
 
-  {{this.prodotti}}
+	<br>
+  <div *ngFor="let prod of prodotti" class="card">
+    <div class="card-body">
+      <span><b>Prodotto:</b> {{prod.product_name}} </span> <br>
+      <span><b>Fornitore:</b> {{prod.supplier}} </span> <br>
+      <span><b>Quantità:</b> {{prod.quantity}} </span> <br>
+      <span><b>Costo Unitario:</b> {{prod.unit_cost}} </span> <br>
+    </div>
+  </div>
 </body>
 
 </html>

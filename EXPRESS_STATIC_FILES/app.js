@@ -13,9 +13,12 @@ app.get('/about', function (req, res) {
 app.get('/sitemap', function (req, res) {
     res.sendFile(path.join(__dirname, 'sitemap.html'));
 });
+app.get('/api', (req, res) => {
+  res.send('api works');
+});
 app.get('/api/products', function (req, res) {
     jsonProducts = { "products": [{ "_id": { "$oid": "5968dd23fc13ae04d9000001" }, "product_name": "sildenafil citrate", "supplier": "Wisozk Inc", "quantity": 261, "unit_cost": "$10.47" }, { "_id": { "$oid": "5968dd23fc13ae04d9000002" }, "product_name": "Mountain Juniperus ashei", "supplier": "Keebler-Hilpert", "quantity": 292, "unit_cost": "$8.74" }, { "_id": { "$oid": "5968dd23fc13ae04d9000003" }, "product_name": "Dextromathorphan HBr", "supplier": "Schmitt-Weissnat", "quantity": 211, "unit_cost": "$20.53" }] }
-    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.send(JSON.stringify(jsonProducts));
 });
 

@@ -1,4 +1,4 @@
-module.exports = class Products {
+module.exports = class Product {
 
   constructor(id, product_name, supplier, quantity, unit_cost) {
     this.id = id;
